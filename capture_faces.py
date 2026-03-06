@@ -1,13 +1,20 @@
 import cv2
 import os
 import time
+import database
+import argparse
 
-def capture_faces():
-    # 1. Get user name
-    name = input("Enter the name of the person: ").strip().replace(" ", "_")
+def capture_faces(name=None):
+    # 1. Get user name if not provided
+    if not name:
+        name = input("Enter the name of the person: ").strip().replace(" ", "_")
+    
     if not name:
         print("[ERROR] Name cannot be empty.")
         return
+
+    # Add to database
+    database.add_student(name)
 
     # 2. Create directory for the user
     dataset_dir = "dataset"
@@ -65,4 +72,8 @@ def capture_faces():
         print("[INFO] Next step: Run 'python encode_faces.py' to update the model.")
 
 if __name__ == "__main__":
-    capture_faces()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--name", type=str, help="Name of the person to capture")
+    args = parser.parse_args()
+    
+    capture_faces(name=args.name)

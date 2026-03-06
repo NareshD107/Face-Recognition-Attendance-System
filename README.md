@@ -51,14 +51,15 @@ python encode_faces.py
 This will create an `encodings.pickle` file containing the recognized facial features.
 
 ### 4. 🏃 Run the Attendance System
-Once the encodings are generated, you can start the live webcam feed:
+To launch the modern Graphical User Interface (GUI), use the local virtual environment:
 ```bash
 .\venv\Scripts\python.exe main.py
 ```
-- A window will pop up showing the camera feed.
-- Recognized faces will have a green box and their name.
-- Unknown faces will have a red box labeled "Unknown".
-- Press `q` to quit the application.
+- The dashboard will open with the sidebar menu.
+- If you prefer the legacy terminal-based menu, use:
+```bash
+.\venv\Scripts\python.exe main.py --cli
+```
 
 ### 5. 📑 Check Attendance
 Open `attendance/attendance.csv` to view the logged attendance records.
